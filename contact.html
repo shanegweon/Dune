@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — DUNE Maritime Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/png" href="Logo/DUNE Favicon.png" />
+</head>
+<body class="page-contact">
+
+<!-- ============ NAVBAR ============ -->
+<nav class="navbar solid" id="navbar">
+  <a href="index.html" class="nav-logo"><img src="Logo/DUNE Logo.png" alt="DUNE Maritime Group" /></a>
+  <ul class="nav-links">
+    <li><a href="index.html"     class="nav-link" data-en="HOME"      data-ko="홈">HOME</a></li>
+    <li><a href="about.html"     class="nav-link" data-en="ABOUT"     data-ko="소개">ABOUT</a></li>
+    <li><a href="companies.html" class="nav-link" data-en="COMPANIES" data-ko="계열사">COMPANIES</a></li>
+    <li><a href="services.html"  class="nav-link" data-en="SERVICES"  data-ko="서비스">SERVICES</a></li>
+    <li><a href="why-dune.html"  class="nav-link" data-en="WHY DUNE"  data-ko="왜 DUNE인가">WHY DUNE</a></li>
+    <li><a href="contact.html"   class="nav-link" data-en="CONTACT"   data-ko="문의">CONTACT</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn" data-lang="en">EN</button>
+      <span class="lang-divider"></span>
+      <button class="lang-btn" data-lang="ko">한국어</button>
+    </div>
+    <a href="contact.html" class="nav-cta" data-en="GET IN TOUCH" data-ko="문의하기">GET IN TOUCH</a>
+  </div>
+  <button class="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-mobile-overlay">
+  <button class="mob-close-btn">&#x2715;</button>
+  <a href="index.html"     class="nav-link" data-en="HOME"      data-ko="홈">HOME</a>
+  <a href="about.html"     class="nav-link" data-en="ABOUT"     data-ko="소개">ABOUT</a>
+  <a href="companies.html" class="nav-link" data-en="COMPANIES" data-ko="계열사">COMPANIES</a>
+  <a href="services.html"  class="nav-link" data-en="SERVICES"  data-ko="서비스">SERVICES</a>
+  <a href="why-dune.html"  class="nav-link" data-en="WHY DUNE"  data-ko="왜 DUNE인가">WHY DUNE</a>
+  <a href="contact.html"   class="nav-link" data-en="CONTACT"   data-ko="문의">CONTACT</a>
+  <div class="mob-lang">
+    <button class="mob-lang-btn" data-lang="en">EN</button>
+    <span class="mob-lang-div"></span>
+    <button class="mob-lang-btn" data-lang="ko">한국어</button>
+  </div>
+</div>
+
+<!-- ============ PAGE HERO ============ -->
+<section class="page-hero">
+  <p class="eyebrow" data-en="CONTACT" data-ko="문의">CONTACT</p>
+  <h1 data-en="Get in Touch" data-ko="문의하기">Get in Touch</h1>
+  <p data-en="Reach out to us for any maritime service enquiry.<br />Our team responds within 24 hours." data-ko="해운 서비스 문의는 저희에게 연락해 주세요. 저희 팀은 24시간 이내에 답변드립니다.">Reach out to us for any maritime service enquiry.<br />Our team responds within 24 hours.</p>
+</section>
+
+<!-- ============ CONTACT BODY ============ -->
+<div class="contact-body">
+
+  <!-- Form -->
+  <div class="fade-up">
+    <form id="contact-form">
+      <label class="form-section-label" data-en="COMPANY OF INTEREST" data-ko="관심 계열사">COMPANY OF INTEREST</label>
+      <div class="co-selector">
+        <div class="co-sel-item">
+          <input type="checkbox" id="co-marine" name="company" value="DUNE Marine" />
+          <label for="co-marine">DUNE Marine</label>
+        </div>
+        <div class="co-sel-item">
+          <input type="checkbox" id="co-shipping" name="company" value="DUNE Shipping" />
+          <label for="co-shipping">DUNE Shipping</label>
+        </div>
+        <div class="co-sel-item">
+          <input type="checkbox" id="co-pacific" name="company" value="DUNE Pacific" />
+          <label for="co-pacific">DUNE Pacific</label>
+        </div>
+        <div class="co-sel-item">
+          <input type="checkbox" id="co-offshore" name="company" value="DUNE Offshore" />
+          <label for="co-offshore">DUNE Offshore</label>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label class="form-section-label" for="full-name" data-en="FULL NAME" data-ko="성함">FULL NAME</label>
+          <input type="text" id="full-name" name="name" placeholder="" required />
+        </div>
+        <div class="form-field">
+          <label class="form-section-label" for="email" data-en="EMAIL ADDRESS" data-ko="이메일 주소">EMAIL ADDRESS</label>
+          <input type="email" id="email" name="email" placeholder="" required />
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label class="form-section-label" for="company-name" data-en="COMPANY" data-ko="회사명">COMPANY</label>
+        <input type="text" id="company-name" name="company_name" placeholder="" />
+      </div>
+
+      <div class="form-field">
+        <label class="form-section-label" for="message" data-en="MESSAGE" data-ko="메시지">MESSAGE</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary" data-en="SEND MESSAGE" data-ko="메시지 전송">SEND MESSAGE</button>
+    </form>
+  </div>
+
+  <!-- Info -->
+  <div class="fade-up">
+    <div class="info-block">
+      <h4 data-en="LOCAL TIME" data-ko="현지 시간">LOCAL TIME</h4>
+      <div class="clocks">
+        <div class="clock-box">
+          <div class="clock-city" data-en="SINGAPORE TIME" data-ko="싱가포르 시간">SINGAPORE TIME</div>
+          <div class="clock-time" id="sg-clock">--:--:--</div>
+        </div>
+        <div class="clock-box">
+          <div class="clock-city" data-en="SEOUL TIME" data-ko="서울 시간">SEOUL TIME</div>
+          <div class="clock-time" id="seoul-clock">--:--:--</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-block">
+      <h4 data-en="SINGAPORE OFFICE" data-ko="싱가포르 사무소">SINGAPORE OFFICE</h4>
+      <div class="contact-line">
+        <span>&#9679;</span>
+        <span data-en="10 Anson Road, #33-04, International Plaza, Singapore 079903" data-ko="싱가포르 079903, 인터내셔널 플라자, 앤슨 로드 10번지 #33-04">10 Anson Road, #33-04, International Plaza, Singapore 079903</span>
+      </div>
+      <div class="contact-line">
+        <span>&#9993;</span>
+        <a href="mailto:dune@duneship.com">dune@duneship.com</a>
+      </div>
+      <div class="contact-line">
+        <span>&#128279;</span>
+        <a href="https://www.duneship.com" target="_blank" rel="noopener">www.duneship.com</a>
+      </div>
+      <div class="contact-line">
+        <span>&#9990;</span>
+        <a href="tel:+6561224382">+65 6122 4382</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-org">
+    <div class="footer-org-wrap">
+      <p class="org-label" data-en="GROUP STRUCTURE" data-ko="그룹 구조">GROUP STRUCTURE</p>
+      <div class="org-chart">
+        <div class="org-top">DUNE GROUP</div>
+        <div class="org-vline"></div>
+        <div class="org-bottom-row">
+          <div class="org-branch"><div class="org-branch-vline"></div><div class="org-node">DUNE MARINE</div></div>
+          <div class="org-branch"><div class="org-branch-vline"></div><div class="org-node">DUNE SHIPPING</div></div>
+          <div class="org-branch"><div class="org-branch-vline"></div><div class="org-node">DUNE PACIFIC</div></div>
+          <div class="org-branch"><div class="org-branch-vline"></div><div class="org-node">DUNE OFFSHORE</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-main">
+    <div>
+      <img src="Logo/DUNE Logo.png" alt="DUNE" class="footer-logo-img" />
+      <p class="footer-desc" data-en="Singapore-based maritime services group delivering shipping agency, marine services, supply, and offshore engineering solutions across Asia." data-ko="싱가포르 기반 해운 서비스 그룹으로 아시아 전역에 선박 대리점, 해양 서비스, 공급, 해양 엔지니어링 솔루션을 제공합니다.">Singapore-based maritime services group delivering shipping agency, marine services, supply, and offshore engineering solutions across Asia.</p>
+      <span class="footer-tag" data-en="SINGAPORE MARITIME SERVICES GROUP" data-ko="싱가포르 해운 서비스 그룹">SINGAPORE MARITIME SERVICES GROUP</span>
+    </div>
+    <div class="footer-col">
+      <h5 data-en="COMPANIES" data-ko="계열사">COMPANIES</h5>
+      <ul>
+        <li><a href="dune-marine.html">DUNE Marine</a></li>
+        <li><a href="dune-shipping.html">DUNE Shipping</a></li>
+        <li><a href="dune-pacific.html">DUNE Pacific</a></li>
+        <li><a href="dune-offshore.html">DUNE Offshore</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5 data-en="SERVICES" data-ko="서비스">SERVICES</h5>
+      <ul>
+        <li><a href="services.html" data-en="Shipping Agency"       data-ko="해운 대리점">Shipping Agency</a></li>
+        <li><a href="services.html" data-en="Marine Service"        data-ko="해양 서비스">Marine Service</a></li>
+        <li><a href="services.html" data-en="Supply &amp; Provisions" data-ko="선용품 공급">Supply &amp; Provisions</a></li>
+        <li><a href="services.html" data-en="Engineering Solutions" data-ko="엔지니어링 솔루션">Engineering Solutions</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5 data-en="CONTACT" data-ko="연락처">CONTACT</h5>
+      <span class="footer-contact-line">Singapore</span>
+      <a href="mailto:info@duneship.com" class="footer-contact-line">info@duneship.com</a>
+      <a href="https://www.duneship.com" class="footer-contact-line" target="_blank" rel="noopener">www.duneship.com</a>
+      <a href="contact.html" class="footer-cta" data-en="GET IN TOUCH" data-ko="문의하기">GET IN TOUCH</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p data-en="&copy; 2025 DUNE Maritime Group. All rights reserved." data-ko="&copy; 2025 DUNE 해운 그룹. 모든 권리 보유.">&copy; 2025 DUNE Maritime Group. All rights reserved.</p>
+    <a href="#" data-en="Privacy Policy" data-ko="개인정보처리방침">Privacy Policy</a>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
