@@ -2,6 +2,37 @@
    DUNE Maritime Group — Main JavaScript
    ============================================================ */
 
+/* ---- Hero video crossfade loop ---- */
+(function () {
+  const vidA = document.querySelector('.hero-vid-a');
+  const vidB = document.querySelector('.hero-vid-b');
+  if (!vidA || !vidB) return;
+
+  const FADE = 1.5; // crossfade duration in seconds
+  let fading = false;
+
+  function crossfade(outVid, inVid) {
+    if (fading) return;
+    fading = true;
+    inVid.currentTime = 0;
+    inVid.play();
+    inVid.style.opacity = '1';
+    outVid.style.opacity = '0';
+    setTimeout(function () {
+      outVid.pause();
+      outVid.currentTime = 0;
+      fading = false;
+    }, FADE * 1000 + 200);
+  }
+
+  vidA.addEventListener('timeupdate', function () {
+    if (vidA.duration && vidA.currentTime >= vidA.duration - FADE) crossfade(vidA, vidB);
+  });
+  vidB.addEventListener('timeupdate', function () {
+    if (vidB.duration && vidB.currentTime >= vidB.duration - FADE) crossfade(vidB, vidA);
+  });
+})();
+
 /* ---- Loading Screen ---- */
 window.addEventListener('load', () => {
   const screen = document.getElementById('loading-screen');
