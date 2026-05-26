@@ -8,28 +8,46 @@
   const vidB = document.querySelector('.hero-vid-b');
   if (!vidA || !vidB) return;
 
-  const FADE = 1.5; // crossfade duration in seconds
+  const FADE = 1.5;
+  let current = 0; // 0 = A active, 1 = B active
   let fading = false;
 
-  function crossfade(outVid, inVid) {
+  vidA.style.zIndex = '1';
+  vidB.style.zIndex = '0';
+
+  function crossfade() {
     if (fading) return;
     fading = true;
+    const outVid = current === 0 ? vidA : vidB;
+    const inVid  = current === 0 ? vidB : vidA;
+
+    // Bring incoming video on top and start it, but keep outgoing fully visible
     inVid.currentTime = 0;
     inVid.play();
-    inVid.style.opacity = '1';
-    outVid.style.opacity = '0';
+    inVid.style.zIndex = '2';
+    inVid.style.opacity = '0';
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        inVid.style.opacity = '1'; // fade in over the top — no black gap
+      });
+    });
+
     setTimeout(function () {
       outVid.pause();
       outVid.currentTime = 0;
+      outVid.style.opacity = '0';
+      outVid.style.zIndex = '0';
+      inVid.style.zIndex = '1';
+      current = 1 - current;
       fading = false;
     }, FADE * 1000 + 200);
   }
 
   vidA.addEventListener('timeupdate', function () {
-    if (vidA.duration && vidA.currentTime >= vidA.duration - FADE) crossfade(vidA, vidB);
+    if (current === 0 && vidA.duration && vidA.currentTime >= vidA.duration - FADE) crossfade();
   });
   vidB.addEventListener('timeupdate', function () {
-    if (vidB.duration && vidB.currentTime >= vidB.duration - FADE) crossfade(vidB, vidA);
+    if (current === 1 && vidB.duration && vidB.currentTime >= vidB.duration - FADE) crossfade();
   });
 })();
 
