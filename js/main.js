@@ -8,12 +8,14 @@
   const vidB = document.querySelector('.hero-vid-b');
   if (!vidA || !vidB) return;
 
-  const FADE = 1.5;
-  let current = 0; // 0 = A active, 1 = B active
+  const FADE = 1.5; // seconds
+  let current = 0;  // 0 = A active, 1 = B active
   let fading = false;
 
-  vidA.style.zIndex = '1';
-  vidB.style.zIndex = '0';
+  // Opacity-only crossfade — no z-index changes, so the shadow overlay
+  // (z-index: 1 in CSS) always sits above both videos.
+  vidA.style.opacity = '1';
+  vidB.style.opacity = '0';
 
   function crossfade() {
     if (fading) return;
@@ -21,14 +23,11 @@
     const outVid = current === 0 ? vidA : vidB;
     const inVid  = current === 0 ? vidB : vidA;
 
-    // Bring incoming video on top and start it, but keep outgoing fully visible
     inVid.currentTime = 0;
     inVid.play();
-    inVid.style.zIndex = '2';
-    inVid.style.opacity = '0';
     requestAnimationFrame(function () {
       requestAnimationFrame(function () {
-        inVid.style.opacity = '1'; // fade in over the top — no black gap
+        inVid.style.opacity = '1';
       });
     });
 
@@ -36,8 +35,6 @@
       outVid.pause();
       outVid.currentTime = 0;
       outVid.style.opacity = '0';
-      outVid.style.zIndex = '0';
-      inVid.style.zIndex = '1';
       current = 1 - current;
       fading = false;
     }, FADE * 1000 + 200);
