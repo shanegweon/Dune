@@ -2,30 +2,50 @@
    DUNE Maritime Group — Main JavaScript
    ============================================================ */
 
-/* ---- Hero video fade loop ---- */
+/* ---- Hero video crossfade loop ---- */
 (function () {
-  const vid = document.querySelector('.hero-vid-a');
-  if (!vid) return;
+  const vidA = document.querySelector('.hero-vid-a');
+  const vidB = document.querySelector('.hero-vid-b');
+  if (!vidA || !vidB) return;
 
-  const FADE = 1.0; // seconds — must match CSS transition on .hero-video
-  let fadingOut = false;
+  // FADE must match the CSS transition duration on .hero-video.
+  // Kept short so a newly-active video doesn't immediately re-trigger
+  // if the source clip is only a few seconds long.
+  const FADE = 0.8;
+  let current = 0;
+  let fading = false;
 
-  vid.addEventListener('timeupdate', function () {
-    if (!fadingOut && vid.duration && vid.currentTime >= vid.duration - FADE) {
-      fadingOut = true;
-      vid.style.opacity = '0';
-    }
-  });
+  vidA.style.opacity = '1';
+  vidB.style.opacity = '0';
 
-  vid.addEventListener('ended', function () {
-    vid.currentTime = 0;
-    vid.play();
-    fadingOut = false;
+  function crossfade() {
+    if (fading) return;
+    fading = true;
+    const outVid = current === 0 ? vidA : vidB;
+    const inVid  = current === 0 ? vidB : vidA;
+
+    inVid.currentTime = 0;
+    inVid.play();
     requestAnimationFrame(function () {
       requestAnimationFrame(function () {
-        vid.style.opacity = '1';
+        inVid.style.opacity = '1';
       });
     });
+
+    setTimeout(function () {
+      outVid.pause();
+      outVid.currentTime = 0;
+      outVid.style.opacity = '0';
+      current = 1 - current;
+      fading = false;
+    }, FADE * 1000 + 200);
+  }
+
+  vidA.addEventListener('timeupdate', function () {
+    if (current === 0 && vidA.duration && vidA.currentTime >= vidA.duration - FADE) crossfade();
+  });
+  vidB.addEventListener('timeupdate', function () {
+    if (current === 1 && vidB.duration && vidB.currentTime >= vidB.duration - FADE) crossfade();
   });
 })();
 
