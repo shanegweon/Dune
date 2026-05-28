@@ -2,49 +2,30 @@
    DUNE Maritime Group — Main JavaScript
    ============================================================ */
 
-/* ---- Hero video crossfade loop ---- */
+/* ---- Hero video fade loop ---- */
 (function () {
-  const vidA = document.querySelector('.hero-vid-a');
-  const vidB = document.querySelector('.hero-vid-b');
-  if (!vidA || !vidB) return;
+  const vid = document.querySelector('.hero-vid-a');
+  if (!vid) return;
 
-  const FADE = 1.5; // seconds
-  let current = 0;  // 0 = A active, 1 = B active
-  let fading = false;
+  const FADE = 1.0; // seconds — must match CSS transition on .hero-video
+  let fadingOut = false;
 
-  // Opacity-only crossfade — no z-index changes, so the shadow overlay
-  // (z-index: 1 in CSS) always sits above both videos.
-  vidA.style.opacity = '1';
-  vidB.style.opacity = '0';
+  vid.addEventListener('timeupdate', function () {
+    if (!fadingOut && vid.duration && vid.currentTime >= vid.duration - FADE) {
+      fadingOut = true;
+      vid.style.opacity = '0';
+    }
+  });
 
-  function crossfade() {
-    if (fading) return;
-    fading = true;
-    const outVid = current === 0 ? vidA : vidB;
-    const inVid  = current === 0 ? vidB : vidA;
-
-    inVid.currentTime = 0;
-    inVid.play();
+  vid.addEventListener('ended', function () {
+    vid.currentTime = 0;
+    vid.play();
+    fadingOut = false;
     requestAnimationFrame(function () {
       requestAnimationFrame(function () {
-        inVid.style.opacity = '1';
+        vid.style.opacity = '1';
       });
     });
-
-    setTimeout(function () {
-      outVid.pause();
-      outVid.currentTime = 0;
-      outVid.style.opacity = '0';
-      current = 1 - current;
-      fading = false;
-    }, FADE * 1000 + 200);
-  }
-
-  vidA.addEventListener('timeupdate', function () {
-    if (current === 0 && vidA.duration && vidA.currentTime >= vidA.duration - FADE) crossfade();
-  });
-  vidB.addEventListener('timeupdate', function () {
-    if (current === 1 && vidB.duration && vidB.currentTime >= vidB.duration - FADE) crossfade();
   });
 })();
 
